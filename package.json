@@ -16,5 +16,10 @@
     "url": "https://github.com/codeozxxx/electron-react/issues"
   },
   "homepage": "https://github.com/codeozxxx/electron-react#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "electron": "^11.3.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
 }
