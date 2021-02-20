@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
+const fs = require('fs');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -6,11 +8,19 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: false,
+      contextIsolation: true, // protect against prototype pollution
+      enableRemoteModule: false,
+      preload: path.join(__dirname, 'src/preload.js'), // use a preload script
     },
   });
 
   win.loadFile('./build/index.html');
   win.webContents.openDevTools();
+
+  ipcMain.on('toMain', (event, args) => {
+    console.log('[RECV] main.js', args);
+    win.webContents.send('fromMain', 'hello');
+  });
 }
 
 app.whenReady().then(createWindow);
