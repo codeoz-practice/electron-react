@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
+const log = require('./log/log');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -18,7 +19,7 @@ function createWindow() {
   win.webContents.openDevTools();
 
   ipcMain.on('toMain', (event, args) => {
-    console.log('[RECV] main.js', args);
+    log.error('[RECV] main.js: ', args);
     win.webContents.send('fromMain', 'hello');
   });
 }

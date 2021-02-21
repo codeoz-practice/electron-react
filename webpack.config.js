@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index_temp.js',
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
