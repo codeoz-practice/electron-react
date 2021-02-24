@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import Counter from './components/Counter';
+import Option from './components/Option';
+import Button from './components/Button';
+
 window.api.receive('fromMain', (data) => {
   console.log(`[RECV] Renderer-App.js: ${data} from main process`);
 });
@@ -13,6 +17,9 @@ export default class extends Component {
   render() {
     return (
       <div className='app'>
+        <Counter />
+        <Option />
+        <Button />
         <h1>Electron React App</h1>
         <p>
           To get started, edit <code>src/App.js</code> and save to reload.
