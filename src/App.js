@@ -46,7 +46,7 @@ class ErrorBoundary extends React.Component {
 
     console.log('error:', error);
 
-    window.api.send('toMain', error);
+    window.api.send('toMain', error.stack);
   }
 
   render() {

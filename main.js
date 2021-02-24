@@ -18,6 +18,13 @@ function createWindow() {
   win.loadFile('./build/index.html');
   win.webContents.openDevTools();
 
+  /* Set did-fail-load listener once */
+  mainWindow.webContents.on('did-fail-load', function () {
+    console.log('did-fail-load');
+
+    // mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  });
+
   ipcMain.on('toMain', (event, args) => {
     log.error('[RECV] main.js: ', args);
     win.webContents.send('fromMain', 'hello');
